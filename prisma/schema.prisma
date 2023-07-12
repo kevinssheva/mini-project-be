@@ -17,24 +17,24 @@ datasource db {
 }
 
 model Student {
-  id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  first_name String
-  last_name  String
-  enrollment Enrollment[]
+  id              String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  first_name      String
+  last_name       String
+  enrollment      Enrollment[]
 }
 
 model Course {
-  id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name       String
-  credits    Int
-  enrollment Enrollment[]
+  id              String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name            String
+  credits         Int
+  enrollment      Enrollment[]
 }
 
 model Enrollment {
-  enrollment_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  enrollment_id   String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   enrollment_date DateTime
-  student         Student  @relation(fields: [student_id], references: [id]) 
-  student_id      String   @db.Uuid
-  course          Course   @relation(fields: [course_id], references: [id])
-  course_id       String   @db.Uuid
+  student         Student     @relation(fields: [student_id], references: [id]) 
+  student_id      String      @db.Uuid
+  course          Course      @relation(fields: [course_id], references: [id])
+  course_id       String      @db.Uuid
 }
