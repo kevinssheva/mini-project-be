@@ -16,15 +16,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Enrollment {
-  enrollment_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  enrollment_date DateTime
-  student         Student  @relation(fields: [student_id], references: [id]) 
-  student_id      String   @db.Uuid
-  course          Course   @relation(fields: [course_id], references: [id])
-  course_id       String   @db.Uuid
-}
-
 model Student {
   id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   first_name String
@@ -37,4 +28,13 @@ model Course {
   name       String
   credits    Int
   enrollment Enrollment[]
+}
+
+model Enrollment {
+  enrollment_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  enrollment_date DateTime
+  student         Student  @relation(fields: [student_id], references: [id]) 
+  student_id      String   @db.Uuid
+  course          Course   @relation(fields: [course_id], references: [id])
+  course_id       String   @db.Uuid
 }
